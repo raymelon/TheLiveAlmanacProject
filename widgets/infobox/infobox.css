@@ -1,4 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(.3, .3);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
 body {
 	display: -ms-flexbox;
 	display: -webkit-flex;
@@ -10,15 +20,6 @@ body {
 	-webkit-box-align: center;
 
 	background: #DADFE8;
-}
-
-@keyframes zoomIn {
-  0% {
-    transform: scale(.3, .3);
-  }
-  100% {
-    transform: scale(1, 1);
-  }
 }
 
 .yo {
