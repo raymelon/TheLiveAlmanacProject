@@ -6,10 +6,19 @@ google.charts.setOnLoadCallback(drawPHMap);
 
 //google.visualization.events.addListener(chart, 'ready', function() { $("#ph-map").css("zoom",1.4); });
 
+// $('[name=region]:radio').click(function () {
+//     options.region = $('[name=region]:radio:checked').attr('value');
+//     chart.draw(result, options);
+// });
+
+// google.visualization.events.addListener(chart, 'select', function() { 
+// 	$("#ph-map").css("zoom",1.4); 
+// });
+
 function drawPHMap() {
 	var data = google.visualization.arrayToDataTable([
-		['Region Name', 'Region Code', 'Region Number'],
-		['PH-00' , 'NCR', 0],
+		['Name', 'Region', 'Region Number'],
+		['PH-00', 'NCR', 0],
     	['PH-01' , 'REGION I', 1],
 		['PH-02' , 'REGION II', 2],
 		['PH-03' , 'REGION III', 3],
@@ -25,11 +34,16 @@ function drawPHMap() {
 		['PH-12' , 'REGION XII', 13],
 		['PH-13' , 'CARAGA', 14],
         ['PH-14' , 'ARMM', 15],
-	 	['PH-15' , 'CAR', 16]
+	 	['PH-15' , 'CAR', 16],
 	]);
 
 	var options = {region:'PH',
         resolution:'provinces',
+        // displayMode: 'markers',
+        sizeAxis: {
+        	minValue: 0,
+        	maxValue: 60
+        },
         colorAxis: {
             minValue: 0,
             maxValue: 16
@@ -46,13 +60,24 @@ function drawPHMap() {
     		'#b7a882',
     		'#308aee',
     		'#a2b473'
-    	]
+    	],
+    	showLegend: true,
+    	showZoomOut: true,
+    	zoomOutLabel: 'Zoom Out'
+
 	};
 
 	var chart = new google.visualization.GeoChart(document.getElementById('ph-map'));
 	
 	//google.visualization.events.addListener(chart, 'ready', function() { $("#ph-map").css("zoom",1.4); });
 	chart.draw(data, options);
-
+	google.visualization.events.addListener(chart, 'regionClick', function(eventData) { 
+		$("#ph-map").css("transform", "scale(1.4)");
+		console.log(eventData);
+	});
 	//google.visualization.events.addListener(chart, 'ready', function() { $("#ph-map").css("zoom",1.4); });
 }
+
+$('#zoom-out').click(function() { 
+	$("#ph-map").css("transform", "scale(1)");
+});

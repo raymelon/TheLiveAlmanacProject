@@ -13,6 +13,28 @@ body {
 
 }
 
+#zoom-out {
+	padding-left: 80%;
+    padding-right: 0%;
+    margin: 0;
+    bottom: 30px;
+ 	right: 30px;
+}
+
+#zoom-out button {
+	font: 28px 'Roboto', sans-serif;
+	font-weight: bold;
+
+	background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: fixed;
+    z-index: 0;
+}
+
 #ph-map {
 	display: -ms-flexbox;
 	display: -webkit-flex;
@@ -35,7 +57,17 @@ body {
 	/*color: #333;*/
 	animation: .8s ease-out 0s 1 zoomIn;
 
+	transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-ms-transition: all 1s ease;
+	-webkit-transition: all 1s ease;
+	-o-transition: all 1s ease;
+
 	height: 100%;
 	width: 100%;
 }
+
+/*#ph-map:hover {
+	transform: scale(1.4);
+}*/
 
