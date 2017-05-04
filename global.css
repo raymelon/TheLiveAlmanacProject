@@ -10,6 +10,10 @@
 }
 
 body {
+
+}
+
+#ph-map {
 	display: -ms-flexbox;
 	display: -webkit-flex;
 	display: flex;
@@ -26,8 +30,12 @@ body {
 	font-weight: bold;
 	text-align: center;
 
-	padding: 2em 2em 2em 2em;
-	text-shadow: -1px -1px 0px #333, -1px -1px 0px #333;
+	/*padding: 2em 2em 2em 2em;*/
+	/*text-shadow: -1px -1px 0px #333, -1px -1px 0px #333;*/
 	/*color: #333;*/
-	animation: .4s ease-out 0s 1 zoomIn;
+	animation: .8s ease-out 0s 1 zoomIn;
+
+	height: 100%;
+	width: 100%;
 }
+
