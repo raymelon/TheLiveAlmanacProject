@@ -9,6 +9,12 @@
   }
 }
 
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+}
+
 body {
 /*	display: -ms-flexbox;
 	display: -webkit-flex;
@@ -18,42 +24,6 @@ body {
 	-ms-flex-align: center;
 	-webkit-align-items: center;
 	-webkit-box-align: center;*/
-
-	width: 100%;
-	overflow: auto;
-}
-
-/*#zoom-out {
-	padding-left: 80%;
-    padding-right: 0%;
-    margin: 0;
-    bottom: 30px;
- 	right: 30px;
-}
-
-#zoom-out button {
-	font: 28px 'Roboto', sans-serif;
-	font-weight: bold;
-
-	background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: fixed;
-    z-index: 0;
-}*/
-
-.details, #ph-map {
-	position: absolute;
-}
-
-.details {
-	/*overflow: hidden;*/
-	margin: 0;
-	padding: 0;
-	float: left;
 }
 
 #ph-map {
@@ -70,7 +40,7 @@ body {
 	color: #666666;
 
 	font: 72px 'Roboto', sans-serif;
-	font-weight: bold;
+	/*font-weight: bold;*/
 	text-align: center;
 
 	/*padding: 2em 2em 2em 2em;*/
@@ -88,9 +58,71 @@ body {
 	width: 100%;
 
 	float: right;
+	position: absolute;
+	z-index: 0;
 }
 
 /*#ph-map:hover {
 	transform: scale(1.4);
 }*/
 
+
+.yo {
+	background: #EFEFEF;
+	font-family: 'Roboto', sans-serif;
+	font-weight: bold;
+
+	animation: .4s ease-out 0s 1 zoomIn;
+
+	float: left;
+}
+
+.yo table:hover {
+	font-size: 20px;
+}
+
+.yo div {
+	padding: 25px 25px 25px 25px;
+	box-shadow: 0px -2px 5px #888888;
+}
+
+.yo div p {
+	color: #666666;
+	font-size: 68px;
+	text-align: center;
+	margin: 0;
+
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	-ms-transition: all .3s ease;
+	transition: all .3s ease;
+}
+
+.yo div p:hover {
+	color: #4D4D4D;
+	font-size: 60px;
+}
+
+.yo table {
+	padding: 50px 50px 50px 50px;
+	width: 100%;
+	color: #1C4587;
+	font-size: 18px;
+	box-shadow: 0 1px 5px #888888;
+	/*border: 1px solid #888888;*/	
+
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	-ms-transition: all .3s ease;
+	transition: all .3s ease;
+}
+
+.yo table tr td {
+	padding: 5px 5px 5px 5px;
+}
+
+.right {
+	color: #950000;
+}
