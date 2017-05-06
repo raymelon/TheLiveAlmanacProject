@@ -14,20 +14,20 @@ var needed = [
     ["official_name", "Official Name: "],
     //["native_name", "Native Name: "],
     ["nickname", "Nickname: "],
-    ["motto", "Motto: "],
-    ["established_date2", "Founded: "],
-    ["established_date3", "Establised as city: "],
+    // ["motto", "Motto: "],
+    // ["established_date2", "Founded: "],
+    // ["established_date3", "Establised as city: "],
     //("leader_title",), // mayor
-    ["leader_name", "Mayor: "],
+    ["leader_name", "Governor: "],
     //("leader_title2",), // vice mayor
-    ["leader_name2", "Vice Mayor: "],
+    ["leader_name1", "Vice Governor: "],
     ["area_total_km2", "Total square km: "],
     ["elevation_m", "Elevation in meters: "],
     ["timezone","Time Zone: "],
     ["utc_offset", "UTC: "]
 ];
 
-var Muntinlupa = new City("https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=Muntinlupa", function(json) {
+var Muntinlupa = new City("https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=Abra_(province)", function(json) {
   
     var id = Object.keys(json.query.pages)[0];
     var article = json.query.pages[id].revisions[0]['*'];
