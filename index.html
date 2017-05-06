@@ -32,7 +32,12 @@
 			  },
 			  "areasSettings": {
 			    "autoZoom": true,
-			    "selectedColor": "#CC0000"
+			    "selectedColor": "#950000",
+			    "outlineColor": "#1C4587",
+			    "outlineThickness": 1,
+			    "rollOverColor": "#950000",
+			    "color": "#1C4587",
+			    "colorSolid": "#990000"
 			  },
 			  "listeners": [{
 			  	"event": "clickMapObject",
@@ -46,13 +51,28 @@
         			// new infobox object using
         			// area.enTitle or area.id
 			  	}
-			  }]
+			  }],
+			  "backgroundZoomsToTop": true,
+			  "colorSteps": 81,
+			  "creditsPosition": "bottom-right",
+			  "preventDragOut": true,
+
+			  "zoomControl": {
+			  	"roundButtons": false,
+			  	"top": "35%",
+			  	"buttonSize": 60,
+			  	"buttonBorderThickness": 2
+			  },
+
+			  "fontFamily": "Roboto",
+			  "fontSize": 30
+
 			});
 		</script>
 	<head>
 	<body>
 		<div class="yo">
-			<div><p>ABRA<p></div>
+			<div><p>PALAWAN<p></div>
 			<table></table>
 		</div>
 		<div id="map-wrapper">

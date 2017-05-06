@@ -27,7 +27,7 @@ var needed = [
     ["utc_offset", "UTC: "]
 ];
 
-var Muntinlupa = new City("https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=Abra_(province)", function(json) {
+var Muntinlupa = new City("https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=Palawan", function(json) {
   
     var id = Object.keys(json.query.pages)[0];
     var article = json.query.pages[id].revisions[0]['*'];

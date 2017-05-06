@@ -55,6 +55,7 @@ body {
 
 #ph-map:hover {
 	transform: scale(1.03);
+	margin-left: 10px;
 }
 
 
@@ -77,6 +78,8 @@ body {
 	/*float: left;*/
 	/*width: 40%;*/
 	padding-right: 5px;
+	padding-left: 5%;
+	/*transform: scale(0.9);*/
 }
 
 .yo table:hover {
@@ -109,7 +112,7 @@ body {
 
 .yo table {
 	padding: 50px 50px 50px 50px;
-	width: 100%;
+	width: inherit;
 	background: #EFEFEF;
 	color: #1C4587;
 	font-size: 18px;
