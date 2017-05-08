@@ -22,7 +22,7 @@
 
 		<script src="widgets/infobox/infobox.js"></script>
 
-		<script type="text/javascript">
+		<script type="text/javascript" defer>
 			var map = AmCharts.makeChart("ph-map", {
 			  "type": "map",
 			  "theme": "light",
@@ -46,10 +46,12 @@
         				return;
 
         			var area = e.mapObject;
-        			console.log(area);
+        			console.log(area.id);
 
         			// new infobox object using
         			// area.enTitle or area.id
+
+        			new infoBox(area.id);
 			  	}
 			  }],
 			  "backgroundZoomsToTop": true,
