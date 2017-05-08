@@ -127,6 +127,8 @@ function infoBox(areaCode) {
   
     // console.log(chunks);
     
+    $(".yo table").html("");
+
     var n = 0;
     chunks.forEach(function(chunk) {
     //for(var c = 0; c < chunks.length; c++) {
@@ -139,9 +141,16 @@ function infoBox(areaCode) {
             var val = row[1].trim();
 
         //console.log(key + ": " + val);
-        if (needed[n] !== undefined)
+        if (needed[n] !== undefined) {
             if (key === needed[n][0]) {
+
                 right = val.split("(");
+
+                if (key === 'name') {
+                    console.log(right[0]);
+                    $(".yo div").html("<p>" + right[0] + "</p>");
+                }
+
                 $(".yo table").append("<tr><td class='left'>" 
                     + needed[n][1] 
                     + "</td>" 
@@ -150,18 +159,9 @@ function infoBox(areaCode) {
                     + "</td></tr>");
                 n++;
             }
+        }
     //}
     });
   });
-  
-  // this.data = function(url, callback) {
-  //   this.docUrl =  url;
-  //   $.ajax({
-  //       url: this.docUrl,
-  //       dataType: "jsonp",
-  //       success: callback
-  //   });
-  // };
 }
 
-// console.log(new infoBox('PH-MAD'));
