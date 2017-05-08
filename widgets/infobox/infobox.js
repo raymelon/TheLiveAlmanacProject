@@ -65,7 +65,7 @@ phProvinces = {
     {'title': 'Quirino', 'iso': 'PH-QUI' },
     {'title': 'Rizal', 'iso': 'PH-RIZ' },
     {'title': 'Romblon', 'iso': 'PH-ROM' },
-    {'title': 'Samar', 'iso': 'PH-WSA' },
+    {'title': 'Samar_(province)', 'iso': 'PH-WSA' },
     {'title': 'Sarangani', 'iso': 'PH-SAR' },
     {'title': 'Siquijor', 'iso': 'PH-SIG' },
     {'title': 'Sorsogon', 'iso': 'PH-SOR' },
@@ -86,16 +86,16 @@ phProvinces = {
 var needed = [
     ["name", "Name: "],
     ["official_name", "Official Name: "],
-    // ["native_name", "Native Name: "],
+    ["native_name", "Native Name: "],
     ["nickname", "Nickname: "],
     ["motto", "Motto: "],
-    ["established_date", "Founded: "],
+    // ["established_date", "Founded: "],
     // ["established_date3", "Establised as city: "],
     //("leader_title",), // mayor
     ["leader_name", "Governor: "],
     //("leader_title2",), // vice mayor
     ["leader_name1", "Vice Governor: "],
-    ["area_total_km2", "Total square km: "],
+    // ["area_total_km2", "Total square km: "],
     ["elevation_m", "Elevation in meters: "],
     ["timezone","Time Zone: "],
     ["utc_offset", "UTC: "]
@@ -117,20 +117,16 @@ function infoBox(areaCode) {
         return row.iso === areaCode;
     })[0].title;
   
-    new phUnit(this.wikiBaseUrl + this.wikiArticleTitle, function(json) {
+    var phArea = new phUnit(this.wikiBaseUrl + this.wikiArticleTitle, function(json) {
         var id = Object.keys(json.query.pages)[0];
         var article = json.query.pages[id].revisions[0]['*'];
 
         var infoBox = article.split("<!-- Infobox Ends -->");
         var chunks = infoBox[0].split("\n|");
-      
-        // console.log(chunks);
         
         $(".yo table").html("");
 
-        // var n = 0;
         chunks.forEach(function(chunk) {
-        //for(var c = 0; c < chunks.length; c++) {
             var row = chunk.split("=");
 
             if (row[0] !== undefined)
@@ -146,17 +142,22 @@ function infoBox(areaCode) {
 
             console.log(needLabel);
 
+            if (row[1] !== '')
             if (needLabel !== undefined) {
-                if (row[1] !== undefined)
+                if (row[1] !== undefined) {
                     var val = row[1].trim();
-
-                // if (key === needed[n][0]) {
 
                     right = val.split("(");
 
                     if (key === 'name') {
-                        console.log(right[0]);
+                        // console.log(right[0]);
                         $(".yo div").html("<p>" + right[0] + "</p>");
+                    }
+
+                    switch(key) {
+                        case 'timezone': 
+                            right[0] = 'Philippine Standard Time (PST)';
+                            break;
                     }
 
                     $(".yo table").append("<tr><td class='left'>" 
@@ -165,10 +166,64 @@ function infoBox(areaCode) {
                         + "<td class='right'>" 
                         + right[0] 
                         + "</td></tr>");
-                // }
+                }
             }
-        //}
         });
+        
+
+        var ph2015CensusSheet = "10g7afHi53TaGfrujRldIzRO_Yv8fkqs0XS6Cz1fzx0U";
+        var tabletop1 = Tabletop.init({
+            key: ph2015CensusSheet,
+            callback: getPopulation,
+            simpleSheet: true
+        });
+
+        function getPopulation(data, tabletop1) {
+            // console.log('data: ', data);
+            for (var row in data) {
+                if (data[row].Province === $(".yo div p").text()) {
+                    $(".yo table").append("<tr><td class='left'>Population: </td><td class='right'>" 
+                        +  data[row].Population + "</td></tr>");
+                }
+            }
+        }
+
+        var ph2017Provinces = "1UBma8XcPbQwnVTKBn_lwj0CuKNunL3nlKS2y07FJd1Y";
+        var tabletop2 = Tabletop.init({
+            key: ph2017Provinces,
+            callback: getOtherData,
+            simpleSheet: true
+        });
+
+        function getOtherData(data, tabletop1) {
+            for (var row in data) {
+                // console.log(data[row]['Province'])
+                if (areaCode === data[row]['ISO[4]']) {
+                    $(".yo table").append("<tr><td class='left'>Population %: </td><td class='right'>" 
+                            +  data[row]['Population[5]'] + "</td></tr>");
+
+                    $(".yo table").append("<tr><td class='left'>Area: </td><td class='right'>" 
+                            +  data[row]['Area[6]'] + "</td></tr>");
+
+                    $(".yo table").append("<tr><td class='left'>Density: </td><td class='right'>" 
+                            +  data[row]['Density'] + "</td></tr>");
+
+                    $(".yo table").append("<tr><td class='left'>ISO: </td><td class='right'>" 
+                            +  data[row]['ISO[4]'] + "</td></tr>");
+
+                    $(".yo table").append("<tr><td class='left'>LGUs: </td><td class='right'>" 
+                            +  data[row]['Town'] + "</td></tr>");
+
+                    $(".yo table").append("<tr><td class='left'>Capital: </td><td class='right'>" 
+                            +  data[row]['Capital'] + "</td></tr>");
+
+                    $(".yo table").append("<tr><td class='left'>Founded: </td><td class='right'>" 
+                            +  data[row]['Division'] + "</td></tr>");
+
+                    // console.log(data[row] )
+                }
+            }
+        }
+
     });
 }
-

@@ -72,6 +72,8 @@ body {
 	width: 40%;
 	padding-right: 5px;
 	padding-left: 5%;
+
+	overflow: scroll;
 }
 
 .yo div p {
