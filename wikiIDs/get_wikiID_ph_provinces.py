@@ -9,7 +9,7 @@ user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/
 letters = list(string.ascii_lowercase)
 headers = { 'User-Agent': user_agent, }
 
-with open('wikiID_ph_ISOs.txt', 'w') as log:
+with open('wikiID_ph_ISOs.txt', 'a+') as log:
 	try:
 		url = 'https://en.wikipedia.org/wiki/ISO_3166-2:PH'
 		req = request.Request(url, None, headers)
@@ -17,13 +17,13 @@ with open('wikiID_ph_ISOs.txt', 'w') as log:
 
 		raw = BeautifulSoup(html, 'html.parser')
 		# hrefs = raw.find_all('a', href=True)
-		hrefs = raw.find_all('span')
+		hrefs = raw.find_all('a')
 
 		for h in hrefs:
 			# print(h, file=log)
 			# print(h['href'])
 			# print(h['href'], file=log)
-			print(h.next, file=log)
+			print(h, file=log)
 
 	except Exception as e:
 		logger.error(str(e))

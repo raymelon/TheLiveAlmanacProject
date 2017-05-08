@@ -22,10 +22,6 @@ body {
 	justify-content: center;
 
 	background: #DADFE8;
-
-	/*-ms-flex-align: center;
-	-webkit-align-items: center;
-	-webkit-box-align: center;*/
 }
 
 #map-wrapper {
@@ -47,9 +43,8 @@ body {
 	-o-transition: all 1s ease;
 
 	height: 100%;
-	width: 50%;
+	width: 40%;
 
-	/*float: right;*/
 	position: absolute;
 }
 
@@ -68,18 +63,23 @@ body {
 
 	flex-direction: column;
 
-	/*background: #EFEFEF;*/
 	background: #DADFE8;
 	font-family: 'Roboto', sans-serif;
 	font-weight: bold;
 
 	animation: .4s ease-out 0s 1 zoomIn;
 
-	/*float: left;*/
-	/*width: 40%;*/
+	width: 40%;
 	padding-right: 5px;
 	padding-left: 5%;
-	/*transform: scale(0.9);*/
+}
+
+.yo div p {
+	width: 80%;
+}
+
+.yo table {
+	width: 100%;
 }
 
 .yo table:hover {
@@ -112,13 +112,10 @@ body {
 
 .yo table {
 	padding: 50px 50px 50px 50px;
-	width: inherit;
 	background: #EFEFEF;
 	color: #1C4587;
 	font-size: 18px;
 	box-shadow: 0 1px 5px #888888;
-	/*height: inherit;*/
-	/*border: 1px solid #888888;*/	
 
 	-webkit-transition: all .3s ease;
 	-moz-transition: all .3s ease;
