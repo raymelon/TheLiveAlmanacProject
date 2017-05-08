@@ -48,8 +48,10 @@ phProvinces = {
     {'title': 'Maguindanao', 'iso': 'PH-MAG' },
     {'title': 'Marinduque', 'iso': 'PH-MAD' },
     {'title': 'Masbate', 'iso': 'PH-MAS' },
-    {'title': 'Misamis_Occidental', 'iso': 'PH-MDC' },
-    {'title': 'Misamis_Oriental', 'iso': 'PH-MDR' },
+    {'title': 'Misamis_Occidental', 'iso': 'PH-MSC' },
+    {'title': 'Misamis_Oriental', 'iso': 'PH-MSR' },
+    {'title': 'Occidental_Mindoro', 'iso': 'PH-MDC' },
+    {'title': 'Oriental_Mindoro', 'iso': 'PH-MDR' },
     {'title': 'Mountain_Province', 'iso': 'PH-MOU' },
     {'title': 'Negros_Occidental', 'iso': 'PH-NEC' },
     {'title': 'Negros_Oriental', 'iso': 'PH-NER' },
@@ -84,10 +86,10 @@ phProvinces = {
 var needed = [
     ["name", "Name: "],
     ["official_name", "Official Name: "],
-    //["native_name", "Native Name: "],
+    // ["native_name", "Native Name: "],
     ["nickname", "Nickname: "],
-    // ["motto", "Motto: "],
-    // ["established_date2", "Founded: "],
+    ["motto", "Motto: "],
+    ["established_date", "Founded: "],
     // ["established_date3", "Establised as city: "],
     //("leader_title",), // mayor
     ["leader_name", "Governor: "],
@@ -115,51 +117,58 @@ function infoBox(areaCode) {
         return row.iso === areaCode;
     })[0].title;
   
-  // console.log(this.wikiBaseUrl + this.wikiArticleTitle)
-  new phUnit(this.wikiBaseUrl + this.wikiArticleTitle, function(json) {
-    var id = Object.keys(json.query.pages)[0];
-    var article = json.query.pages[id].revisions[0]['*'];
+    new phUnit(this.wikiBaseUrl + this.wikiArticleTitle, function(json) {
+        var id = Object.keys(json.query.pages)[0];
+        var article = json.query.pages[id].revisions[0]['*'];
 
-    var infoBox = article.split("<!-- Infobox Ends -->");
-    var chunks = infoBox[0].split("\n|");
-  
-    // console.log(chunks);
-    
-    $(".yo table").html("");
+        var infoBox = article.split("<!-- Infobox Ends -->");
+        var chunks = infoBox[0].split("\n|");
+      
+        // console.log(chunks);
+        
+        $(".yo table").html("");
 
-    var n = 0;
-    chunks.forEach(function(chunk) {
-    //for(var c = 0; c < chunks.length; c++) {
-        var row = chunk.split("=");
+        // var n = 0;
+        chunks.forEach(function(chunk) {
+        //for(var c = 0; c < chunks.length; c++) {
+            var row = chunk.split("=");
 
-        if (row[0] !== undefined)
-            var key = row[0].trim();
+            if (row[0] !== undefined)
+                var key = row[0].trim();
 
-        if (row[1] !== undefined)
-            var val = row[1].trim();
-
-        //console.log(key + ": " + val);
-        if (needed[n] !== undefined) {
-            if (key === needed[n][0]) {
-
-                right = val.split("(");
-
-                if (key === 'name') {
-                    console.log(right[0]);
-                    $(".yo div").html("<p>" + right[0] + "</p>");
+            var needLabel = undefined;
+            for(var n = 0; n < needed.length; n++) {
+                if (needed[n][0] === key) {
+                    needLabel = needed[n][1];
+                    break;
                 }
-
-                $(".yo table").append("<tr><td class='left'>" 
-                    + needed[n][1] 
-                    + "</td>" 
-                    + "<td class='right'>" 
-                    + right[0] 
-                    + "</td></tr>");
-                n++;
             }
-        }
-    //}
+
+            console.log(needLabel);
+
+            if (needLabel !== undefined) {
+                if (row[1] !== undefined)
+                    var val = row[1].trim();
+
+                // if (key === needed[n][0]) {
+
+                    right = val.split("(");
+
+                    if (key === 'name') {
+                        console.log(right[0]);
+                        $(".yo div").html("<p>" + right[0] + "</p>");
+                    }
+
+                    $(".yo table").append("<tr><td class='left'>" 
+                        /*+ needed[n][1] */ + needLabel
+                        + "</td>" 
+                        + "<td class='right'>" 
+                        + right[0] 
+                        + "</td></tr>");
+                // }
+            }
+        //}
+        });
     });
-  });
 }
 
