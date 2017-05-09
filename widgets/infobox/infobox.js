@@ -1,3 +1,19 @@
+function loadPopulationSheet(callback) {
+    var tabletop1 = Tabletop.init({
+        key: "10g7afHi53TaGfrujRldIzRO_Yv8fkqs0XS6Cz1fzx0U",
+        callback: callback,
+        simpleSheet: true
+    });
+}
+
+function loadProvincesSheet(callback) {
+    var tabletop2 = Tabletop.init({
+        key: "1UBma8XcPbQwnVTKBn_lwj0CuKNunL3nlKS2y07FJd1Y",
+        callback: callback,
+        simpleSheet: true
+    });
+}
+
 phProvinces = {
   "phProvinces": [
     {'title': 'Abra_(province)', 'iso': 'PH-ABR' },
@@ -101,7 +117,7 @@ var needed = [
     ["utc_offset", "UTC: "]
 ];
 
-function phUnit(url, callback) {
+function wikiLoader(url, callback) {
     this.docUrl =  url;
     $.ajax({
         url: this.docUrl,
@@ -113,11 +129,11 @@ function phUnit(url, callback) {
 function infoBox(areaCode) {
     this.wikiBaseUrl = 'https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=';
 
-    this.wikiArticleTitle = phProvinces.phProvinces.filter(function(row) {
+    var wikiArticleTitle = phProvinces.phProvinces.filter(function(row) {
         return row.iso === areaCode;
     })[0].title;
   
-    var phArea = new phUnit(this.wikiBaseUrl + this.wikiArticleTitle, function(json) {
+    var phArea = new wikiLoader(this.wikiBaseUrl + wikiArticleTitle, function(json) {
         var id = Object.keys(json.query.pages)[0];
         var article = json.query.pages[id].revisions[0]['*'];
 
@@ -169,61 +185,67 @@ function infoBox(areaCode) {
                 }
             }
         });
-        
 
-        var ph2015CensusSheet = "10g7afHi53TaGfrujRldIzRO_Yv8fkqs0XS6Cz1fzx0U";
-        var tabletop1 = Tabletop.init({
-            key: ph2015CensusSheet,
-            callback: getPopulation,
-            simpleSheet: true
-        });
-
-        function getPopulation(data, tabletop1) {
-            // console.log('data: ', data);
-            for (var row in data) {
-                if (data[row].Province === $(".yo div p").text()) {
+        loadPopulationSheet(function(populationSheet, tabletop1) {
+            for (var row in populationSheet) {
+                if (populationSheet[row].Province === $(".yo div p").text()) {
                     $(".yo table").append("<tr><td class='left'>Population: </td><td class='right'>" 
-                        +  data[row].Population + "</td></tr>");
+                        +  populationSheet[row].Population + "</td></tr>");
                 }
             }
-        }
-
-        var ph2017Provinces = "1UBma8XcPbQwnVTKBn_lwj0CuKNunL3nlKS2y07FJd1Y";
-        var tabletop2 = Tabletop.init({
-            key: ph2017Provinces,
-            callback: getOtherData,
-            simpleSheet: true
         });
 
-        function getOtherData(data, tabletop1) {
-            for (var row in data) {
-                // console.log(data[row]['Province'])
-                if (areaCode === data[row]['ISO[4]']) {
+        loadProvincesSheet(function(provincesSheet, tabletop2) {
+            for (var row in provincesSheet) {
+                if (areaCode === provincesSheet[row]['ISO[4]']) {
                     $(".yo table").append("<tr><td class='left'>Population %: </td><td class='right'>" 
-                            +  data[row]['Population[5]'] + "</td></tr>");
+                            +  provincesSheet[row]['Population[5]'] + "</td></tr>");
 
                     $(".yo table").append("<tr><td class='left'>Area: </td><td class='right'>" 
-                            +  data[row]['Area[6]'] + "</td></tr>");
+                            +  provincesSheet[row]['Area[6]'] + "</td></tr>");
 
                     $(".yo table").append("<tr><td class='left'>Density: </td><td class='right'>" 
-                            +  data[row]['Density'] + "</td></tr>");
+                            +  provincesSheet[row]['Density'] + "</td></tr>");
 
                     $(".yo table").append("<tr><td class='left'>ISO: </td><td class='right'>" 
-                            +  data[row]['ISO[4]'] + "</td></tr>");
+                            +  provincesSheet[row]['ISO[4]'] + "</td></tr>");
 
                     $(".yo table").append("<tr><td class='left'>LGUs: </td><td class='right'>" 
-                            +  data[row]['Town'] + "</td></tr>");
+                            +  provincesSheet[row]['Town'] + "</td></tr>");
 
                     $(".yo table").append("<tr><td class='left'>Capital: </td><td class='right'>" 
-                            +  data[row]['Capital'] + "</td></tr>");
+                            +  provincesSheet[row]['Capital'] + "</td></tr>");
 
                     $(".yo table").append("<tr><td class='left'>Founded: </td><td class='right'>" 
-                            +  data[row]['Division'] + "</td></tr>");
-
-                    // console.log(data[row] )
+                            +  provincesSheet[row]['Division'] + "</td></tr>");
                 }
             }
-        }
+        });
+
+        var municipalities = new wikiLoader("https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=List_of_cities_and_municipalities_in_the_Philippines", function(json) {
+            var id = Object.keys(json.query.pages)[0];
+            var article = json.query.pages[id].revisions[0]['*'];
+            var chunks = article.split("|");
+
+            var provinceName = wikiArticleTitle;
+            provinceName = provinceName.replace('_', ' ');
+            provinceName = provinceName.split('(')[0];
+            provinceName = provinceName.slice(0, provinceName.length - 1);
+
+
+            var results = chunks.filter(function(row) {
+                return row.includes(', ' + provinceName);
+            });
+            
+            $(".yo table").append("<tr><td class='left'>Municipalities:</td><td class='right'>" 
+                    + results.length + "</td></tr>");
+
+            results.forEach(function(result) {
+                var municipality = result.slice(3).split(',')[0];
+                $(".yo table").append("<tr><td class='left'></td><td class='right'>" 
+                    + municipality + "</td></tr>");
+            });
+        });
 
     });
 }
