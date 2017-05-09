@@ -236,7 +236,7 @@ function infoBox(areaCode) {
             var chunks = article.split("|");
 
             var provinceName = wikiArticleTitle;
-            provinceName = provinceName.replace('_', ' ');
+            provinceName = provinceName.split('_').join(' ');
             provinceName = provinceName.split('(')[0];
             provinceName = provinceName.slice(0, provinceName.length - 1);
 
