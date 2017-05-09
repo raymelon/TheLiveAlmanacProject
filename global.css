@@ -59,9 +59,11 @@ body {
 	display: -ms-flexbox;
 	display: -webkit-flex;
 	display: flex;
-	justify-content: center;
+	/*justify-content: center;*/
 
 	flex-direction: column;
+
+	align-content: space-between;
 
 	background: #DADFE8;
 	font-family: 'Roboto', sans-serif;
@@ -82,6 +84,9 @@ body {
 
 .yo table {
 	width: 100%;
+
+	border: 1px solid #ccc;
+	border-radius: 6px;
 }
 
 .yo table:hover {
@@ -92,6 +97,9 @@ body {
 	background: #EFEFEF;
 	padding: 25px 25px 25px 25px;
 	box-shadow: 0px -2px 5px #888888;
+
+	border: 1px solid #ccc;
+	border-radius: 6px;
 }
 
 .yo div p {
