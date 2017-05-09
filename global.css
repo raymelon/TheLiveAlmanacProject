@@ -79,7 +79,13 @@ body {
 }
 
 .yo div p {
-	width: 80%;
+	width: 100%;
+}
+
+.yo div img {
+	width: 50%;
+	height: 50%;
+	padding: 2% 20% 2% 20%;
 }
 
 .yo table {
@@ -90,7 +96,8 @@ body {
 }
 
 .yo table:hover {
-	font-size: 20px;
+	/*font-size: 19px;*/
+	transform: scale(1.01);
 }
 
 .yo div {

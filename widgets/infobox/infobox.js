@@ -105,6 +105,7 @@ var needed = [
     ["native_name", "Native Name: "],
     ["nickname", "Nickname: "],
     ["motto", "Motto: "],
+    ["image_skyline", ""],
     // ["established_date", "Founded: "],
     // ["established_date3", "Establised as city: "],
     //("leader_title",), // mayor
@@ -165,23 +166,30 @@ function infoBox(areaCode) {
 
                     right = val.split("(");
 
-                    if (key === 'name') {
-                        // console.log(right[0]);
-                        $(".yo div").html("<p>" + right[0] + "</p>");
-                    }
+                    if (key === 'image_skyline') {
+                        var imag = right[0];
+                        imag = imag.split(' ').join('_');
+                        imag = "<img src='https://en.wikipedia.org/wiki/File:".concat(imag).concat("#/media/File:").concat(imag).concat("'>");
+                        console.log(imag);
+                        $(".yo div").append(imag);
+                    } else {
 
-                    switch(key) {
-                        case 'timezone': 
-                            right[0] = 'Philippine Standard Time (PST)';
-                            break;
-                    }
+                        switch(key) {
+                            case 'name': 
+                                $(".yo div").html("<p>" + right[0] + "</p>");
+                                break;
+                            case 'timezone': 
+                                right[0] = 'Philippine Standard Time (PST)';
+                                break;  
+                        }
 
-                    $(".yo table").append("<tr><td class='left'>" 
-                        /*+ needed[n][1] */ + needLabel
-                        + "</td>" 
-                        + "<td class='right'>" 
-                        + right[0] 
-                        + "</td></tr>");
+                        $(".yo table").append("<tr><td class='left'>" 
+                            /*+ needed[n][1] */ + needLabel
+                            + "</td>" 
+                            + "<td class='right'>" 
+                            + right[0] 
+                            + "</td></tr>");
+                    }
                 }
             }
         });
