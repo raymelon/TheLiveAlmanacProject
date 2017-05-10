@@ -1,3 +1,12 @@
+$('.yo div p').ready(function () {
+    $('.yo div p').fadeOut(100).fadeIn(500);
+});
+
+$(".yo table").ready(function () {
+    $(".yo table").fadeOut(100).fadeIn(500);
+    $(".yo table").fadeOut(1000).fadeIn(100);
+});
+
 function loadPopulationSheet(callback) {
     var tabletop1 = Tabletop.init({
         key: "10g7afHi53TaGfrujRldIzRO_Yv8fkqs0XS6Cz1fzx0U",
@@ -181,6 +190,8 @@ function infoBox(areaCode) {
                         switch(key) {
                             case 'name': 
                                 $(".yo div").html("<p>" + right[0] + "</p>");
+                                $('.yo div p').fadeOut(10).fadeIn(500);
+                                $(".yo table").fadeOut(10).fadeIn(500);
                                 break;
                             case 'timezone': 
                                 right[0] = 'Philippine Standard Time (PST)';

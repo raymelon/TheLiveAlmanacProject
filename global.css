@@ -1,12 +1,24 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 @keyframes zoomIn {
-  0% {
-    transform: scale(.3, .3);
-  }
-  100% {
-    transform: scale(1, 1);
-  }
+	0% {
+		transform: scale(.3, .3);
+	}
+	100% {
+		transform: scale(1, 1);
+	}
+}
+
+@keyframes highlight {
+	0% {
+		background: #efebe9;
+	}
+	50% {
+		background: #f5f5f5;
+	}
+	100% {
+		background: #efebe9;
+	}
 }
 
 html, body {
@@ -102,6 +114,7 @@ body {
 
 .yo table {
 	width: 100%;
+	animation: 2s ease-in 0s 1 highlight;
 
 	/*border: 1px solid #ccc;
 	border-radius: 6px;*/
@@ -153,6 +166,10 @@ body {
 .yo table tr td {
 	padding: 1.3em 3em 1.3em 3em;
 	border-bottom: 1px solid #ddd;
+}
+
+.yo table tr {
+	transition: .1s ease-out;
 }
 
 .yo table tr:hover {
