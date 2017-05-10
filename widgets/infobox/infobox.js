@@ -157,9 +157,9 @@ function infoBox(areaCode) {
                 }
             }
 
-            console.log(needLabel);
+            // console.log(needLabel + "'" + row[1] + "'");
 
-            if (row[1] !== '')
+            if (row[1] !== ' ' && row[1] !== '')
             if (needLabel !== undefined) {
                 if (row[1] !== undefined) {
                     var val = row[1].trim();
