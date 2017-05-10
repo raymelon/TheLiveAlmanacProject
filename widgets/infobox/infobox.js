@@ -174,13 +174,26 @@ function infoBox(areaCode) {
                         // $(".yo div").append(imag);
                     } else {
 
+                        right[0] = right[0].split('').filter(function (nick) {
+                                return nick.search(/[\w\s\d\.,]/) != -1;
+                        }).join('');
+
                         switch(key) {
                             case 'name': 
                                 $(".yo div").html("<p>" + right[0] + "</p>");
                                 break;
                             case 'timezone': 
                                 right[0] = 'Philippine Standard Time (PST)';
-                                break;  
+                                break;
+                            // case 'nickname':
+                            //     var nickname = 
+                            //         right[0]
+                            //         .split('')
+                            //         .filter(function (nick) {
+                            //             return nick.search(/[\w\s\d]/) != -1;
+                            //         }).join('');
+                            //     right[0] = nickname;
+                            //     break;
                         }
 
                         $(".yo table").append("<tr><td class='left'>" 
