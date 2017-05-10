@@ -21,7 +21,8 @@ body {
 	display: flex;
 	justify-content: center;
 
-	background: #DADFE8;
+	/*background: #DADFE8;*/
+	background: #E8F0FE;
 }
 
 #map-wrapper {
@@ -33,7 +34,7 @@ body {
 }
 
 #ph-map {
-	background: #DADFE8;
+	/*background: #E8F0FE;*/
 	color: #666666;
 
 	font: 72px 'Roboto', sans-serif;
@@ -54,9 +55,8 @@ body {
 
 #ph-map:hover {
 	transform: scale(1.03);
-	margin-left: 10px;
+	/*margin-left: 10px;*/
 }
-
 
 .yo {
 
@@ -67,9 +67,7 @@ body {
 
 	flex-direction: column;
 
-	align-content: space-between;
-
-	background: #DADFE8;
+	/*align-content: space-between;*/
 	font-family: 'Roboto', sans-serif;
 	font-weight: bold;
 
@@ -82,10 +80,18 @@ body {
 	overflow-y: scroll;
 
 	-ms-overflow-style: none;
-}
 
-.yo div p {
-	width: 100%;
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	-ms-transition: all .3s ease;
+	transition: all .3s ease;
+
+	padding-left: 0;
+	padding-right: 0;
+
+	box-shadow: 2.5px 0 15px 0 #888888;
+	background: #efebe9;
 }
 
 .yo div img {
@@ -97,60 +103,62 @@ body {
 .yo table {
 	width: 100%;
 
-	border: 1px solid #ccc;
-	border-radius: 6px;
+	/*border: 1px solid #ccc;
+	border-radius: 6px;*/
 }
 
-.yo table:hover {
-	/*font-size: 19px;*/
+/*.yo table:hover {
+	font-size: 19px;
 	transform: scale(1.01);
-}
+}*/
 
 .yo div {
-	background: #EFEFEF;
+	background: #3f50b5;
 	padding: 25px 25px 25px 25px;
-	box-shadow: 0px -2px 5px #888888;
-
-	border: 1px solid #ccc;
-	border-radius: 6px;
+	box-shadow: 0 2.5px 2.5px 0 #888888;
+	z-index: 1;
+	/*border: 1px solid #ccc;
+	border-radius: 6px;*/
 }
 
 .yo div p {
-	color: #666666;
-	font-size: 68px;
-	text-align: center;
+	color: #ffffff;
+	font-size: 48px;
+	/*text-align: center;*/
 	margin: 0;
-
-	-webkit-transition: all .3s ease;
-	-moz-transition: all .3s ease;
-	-o-transition: all .3s ease;
-	-ms-transition: all .3s ease;
-	transition: all .3s ease;
+	width: 100%;
+	font-weight: lighter;
+	padding: 1.1em 1.1em 1.1em .6em;
 }
 
-.yo div p:hover {
-	color: #4D4D4D;
+.yo:hover {
+	transform: scale(1.01);
+}
+
+/*.yo div p:hover {
 	font-size: 60px;
-}
+	transform: scale(1.01);
+}*/
 
 .yo table {
 	padding: 50px 50px 50px 50px;
-	background: #EFEFEF;
-	color: #1C4587;
+	color: #616161;
+	background: #efebe9;
 	font-size: 18px;
-	box-shadow: 0 1px 5px #888888;
-
-	-webkit-transition: all .3s ease;
-	-moz-transition: all .3s ease;
-	-o-transition: all .3s ease;
-	-ms-transition: all .3s ease;
-	transition: all .3s ease;
+	/*box-shadow: 0 1px 5px #888888;*/
+	border-collapse: collapse;
 }
 
 .yo table tr td {
-	padding: 5px 5px 5px 5px;
+	padding: 1.3em 3em 1.3em 3em;
+	border-bottom: 1px solid #ddd;
+}
+
+.yo table tr:hover {
+	background-color: #f5f5f5;
 }
 
 .right {
-	color: #950000;
+	font-weight: lighter;
+	color: #494949;
 }

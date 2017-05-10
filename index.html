@@ -2,7 +2,6 @@
 <html>
 	<head>
 		<title>PH Live Almanac</title>
-
 		<!-- UNCOMMENT BELOW IF YOU WANT TO USE EXTERNAL AMMAP LIBS-->
 		<!--
 		<script src="https://www.amcharts.com/lib/3/ammap.js"></script>
@@ -34,12 +33,12 @@
 			  },
 			  "areasSettings": {
 			    "autoZoom": true,
-			    "selectedColor": "#950000",
-			    "outlineColor": "#1C4587",
+			    "selectedColor": "#e65100",
+			    "outlineColor": "#33691e",
 			    "outlineThickness": 1,
-			    "rollOverColor": "#950000",
-			    "color": "#1C4587",
-			    "colorSolid": "#990000"
+			    "rollOverColor": "#e65100",
+			    "color": "#33691e",
+			    "colorSolid": "#7cb342"
 			  },
 			  "listeners": [{
 			  	"event": "clickMapObject",
@@ -62,8 +61,9 @@
 			  "preventDragOut": true,
 
 			  "zoomControl": {
-			  	"roundButtons": false,
+			  	// "roundButtons": false,
 			  	"top": "35%",
+			  	"left": "5%",
 			  	"buttonSize": 60,
 			  	"buttonBorderThickness": 2
 			  },
@@ -75,8 +75,11 @@
 		</script>
 	<head>
 	<body>
+		<!-- <header>
+
+		</header> -->
 		<div class="yo">
-			<div><p>PHILIPPINE LIVE ALMANAC<p></div>
+			<div><p>Philippine Live Almanac<p></div>
 			<table><tr><td class='left'>Click on the map</td><tr></table>
 		</div>
 		<div id="map-wrapper">

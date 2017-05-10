@@ -167,11 +167,11 @@ function infoBox(areaCode) {
                     right = val.split("(");
 
                     if (key === 'image_skyline') {
-                        var imag = right[0];
-                        imag = imag.split(' ').join('_');
-                        imag = "<img src='https://en.wikipedia.org/wiki/File:".concat(imag).concat("#/media/File:").concat(imag).concat("'>");
-                        console.log(imag);
-                        $(".yo div").append(imag);
+                        // var imag = right[0];
+                        // imag = imag.split(' ').join('_');
+                        // imag = "<img src='https://en.wikipedia.org/wiki/File:".concat(imag).concat("#/media/File:").concat(imag).concat("'>");
+                        // console.log(imag);
+                        // $(".yo div").append(imag);
                     } else {
 
                         switch(key) {
