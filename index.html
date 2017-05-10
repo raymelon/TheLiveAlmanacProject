@@ -38,8 +38,7 @@
 			    "outlineColor": "#33691e",
 			    "outlineThickness": 1,
 			    "rollOverColor": "#e65100",
-			    "color": "#33691e",
-			    "colorSolid": "#7cb342"
+			    "color": "#33691e"
 			  },
 			  "listeners": [{
 			  	"event": "clickMapObject",
@@ -50,9 +49,6 @@
         			var area = e.mapObject;
         			console.log(area.id);
 
-        			// new infobox object using
-        			// area.enTitle or area.id
-
         			new infoBox(area.id);
 			  	}
 			  }],
@@ -62,11 +58,15 @@
 			  "preventDragOut": true,
 
 			  "zoomControl": {
-			  	// "roundButtons": false,
 			  	"top": "35%",
 			  	"left": "5%",
 			  	"buttonSize": 60,
-			  	"buttonBorderThickness": 2
+			  	"buttonBorderThickness": .8,
+			  	"buttonFillColor": "#efebe9",
+			  	"buttonRollOverColor": "#f5f5f5",
+			  	"buttonBorderColor": "#616161",
+			  	"buttonBorderAlpha": .8,
+			  	"buttonIconColor": "#616161",
 			  },
 
 			  "fontFamily": "Roboto",
