@@ -137,12 +137,13 @@ body {
 
 .yo div p {
 	color: #efebe9;
-	font-size: 48px;
+	font-size: 58px;
 	/*text-align: center;*/
 	margin: 0;
 	width: 100%;
-	font-weight: lighter;
+	font-weight: bold;
 	padding: 1.1em 1.1em 1.1em .6em;
+	text-shadow: -1px -1px 0px #616161, 1px 1px 0px #616161;
 }
 
 .yo:hover {

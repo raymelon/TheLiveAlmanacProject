@@ -251,7 +251,7 @@ function infoBox(areaCode) {
     if (temp[0] === "Mindoro") {
         [temp[0], temp[1]] = [temp[1], temp[0]];
         wikiArticleTitle = temp.join(' ');
-        
+
     } else if (wikiArticleTitle.search("Sulu") !== -1) {
         wikiArticleTitle = "Sulu";
     }
@@ -315,7 +315,7 @@ function infoBox(areaCode) {
                                     region = region[2];
 
                                 $(".yo div").html("<p>" + right[0] + "</p>");
-                                $(".yo div").append("<p style='font-size:18px; padding-left:5%;'>" + region + "</p>");
+                                $(".yo div").append("<p style='font-size:22px; padding-left:5%; font-weight:lighter;'>" + region + "</p>");
                                 $('.yo div p').fadeOut(10).fadeIn(500);
                                 $(".yo table").fadeOut(10).fadeIn(500);
                                 break;
