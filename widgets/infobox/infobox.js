@@ -169,22 +169,152 @@ function getProvinces(json) {
             return data.search("mono") === -1 && data !== '';
         });
     }
-    console.log(provinces);
+    // console.log(provinces);
     phProvinces = provinces;
+
+    var randomColorMap = [];
+    for (var i = 2; i < phProvinces.length; i++) {
+        var end = phProvinces[i].length - 1;
+        var region = phProvinces[i][end];
+        region = region.replace('PH-', '').replace(').</ref>', '');
+
+        switch (region) {
+            case "40": region = "16"; break;
+            case "41": region = "17"; break;
+        }
+        if (randomColorMap[region] === undefined) {
+            randomColorMap[region] = getRandomColor();
+        }
+        var color = randomColorMap[region];
+        map.dataProvider.areas.push({
+            "id": phProvinces[i][0],
+            "value": region,
+            "color": color,
+            "groupID": "PH-" + region
+        });
+
+        var data = {
+            "title": "Region " + region,
+            "color": color
+        };
+        map.legend.data.splice(region, 1, data);
+    }
+    // console.log(map.legend.data);
+    // console.log(randomColorMap);
 }
 
-provincesLoader();
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 
+var map = AmCharts.makeChart("ph-map", {
+  "type": "map",
+  "theme": "light",
+  "dataProvider": {
+    "map": "philippinesHigh",
+    // "getAreasFromMap": true,
+    "areas": [{}]
+  },
+  "areasSettings": {
+    "autoZoom": true,
+    "selectedColor": "#e65100",
+    "outlineColor": "#33691e",
+    "outlineThickness": 1,
+    "rollOverColor": "#e65100",
+    // "color": "#33691e",
+    // "colorSolid": "#e65100"
+  },
+  "listeners": [{
+    "event": "clickMapObject",
+    "method": function(e) {
+        if (e.mapObject.objectType !== "MapArea")
+            return;
+
+        var area = e.mapObject;
+        // console.log(area.id);
+
+        new infoBox(area.id);
+    }
+  }],
+  "backgroundZoomsToTop": true,
+  "colorSteps": 18, //81,
+  "creditsPosition": "bottom-right",
+  "preventDragOut": true,
+
+  "zoomControl": {
+    "top": "35%",
+    "left": "5%",
+    "buttonSize": 60,
+    "buttonBorderThickness": .8,
+    "buttonFillColor": "#efebe9",
+    "buttonRollOverColor": "#f5f5f5",
+    "buttonBorderColor": "#616161",
+    "buttonBorderAlpha": .8,
+    "buttonIconColor": "#616161",
+  },
+
+  "balloon": {
+    "adjustBorderColor": true,
+    "fillColor": "#efebe9",
+    "color": "#494949",
+    "fillAlpha": .9,
+    "cornerRadius": 5,
+    "borderAlpha": 0,
+    "shadowAlpha": .7,
+    "shadowColor": "#494949",
+    "verticalPadding": 12,
+    "horizontalPadding": 18,
+    "fontSize": 20
+  },
+
+  "fontFamily": "Roboto",
+  "fontSize": 30,
+
+  "smallMap": {
+    "enabled": true,
+    "backgroundAlpha": 0.5,
+    "mapColor": "#e65100",
+    "top": 30,
+    "left": 42,
+    "right": NaN,
+    "rectangleColor": "#33691e"
+  },
+  // "valueLegend": {
+  //   "enabled": true
+  // },
+  "legend": {
+    "data": [],
+    "color": "#494949",
+    "fontSize": 12,
+    // "align": "left",
+    "autoMargins": false,
+    "marginTop": 70,
+    "maxColumns": 1,
+    "position": "absolute",
+    "left": 520,
+    "useMarkerColorForLabels": true,
+    "backgroundAlpha": .2,
+    "backgroundColor": "#efebe9"
+
+  }
+});
+
+provincesLoader();
 
 function infoBox(areaCode) {
 
     this.wikiBaseUrl = 'https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=';
 
-    // var wikiArticleTitle = phProvinces.phProvinces.filter(function(row) {
+    // var wikiArticleTitle = phProvinces.phProvinces.filter(function (row) {
     //     return row.iso === areaCode;
     // })[0].title;
 
-    var wikiArticleTitle = phProvinces.filter(function(province) {
+    var wikiArticleTitle = phProvinces.filter(function (province) {
         return province[0] === areaCode;
     })[0][1];
 
