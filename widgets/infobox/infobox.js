@@ -169,8 +169,8 @@ function getProvinces(json) {
             return data.search("mono") === -1 && data !== '';
         });
     }
-    provinces.push(["PH-00", "Metro_Manila", "NCR", "00"]);
-    console.log(provinces);
+    provinces.push(["PH-00", "Metro_Manila", "National Capital Region", "00"]);
+    // console.log(provinces);
     phProvinces = provinces;
 
     var randomColorMap = [];
@@ -191,11 +191,19 @@ function getProvinces(json) {
             "id": phProvinces[i][0],
             "value": region,
             "color": color,
-            "groupID": "PH-" + region
+            // "groupID": "PH-" + region
         });
 
+        var regionName = phProvinces[i][2].split(' ');
+        if (regionName[1] !== undefined) {
+            if (regionName[1].search('(region)') !== -1)
+                regionName = regionName[0];
+            else
+                regionName = regionName.join('\n');
+        }
+
         var data = {
-            "title": "Region " + region,
+            "title": regionName,
             "color": color
         };
         map.legend.data.splice(region, 1, data);
@@ -249,7 +257,6 @@ var map = AmCharts.makeChart("ph-map", {
   }],
   "backgroundZoomsToTop": true,
   "colorSteps": 18, //81,
-  "creditsPosition": "bottom-right",
   "preventDragOut": true,
 
   "zoomControl": {
@@ -296,18 +303,18 @@ var map = AmCharts.makeChart("ph-map", {
   "legend": {
     "data": [],
     "color": "#494949",
-    "fontSize": 12,
+    "fontSize": 10,
     // "align": "left",
     "autoMargins": false,
-    "marginTop": 70,
     "maxColumns": 1,
     "position": "absolute",
-    "left": 520,
+    "left": 510,
+    "top": 0,
     "useMarkerColorForLabels": true,
-    "backgroundAlpha": .2,
+    "backgroundAlpha": .4,
     "backgroundColor": "#efebe9"
-
-  }
+  },
+  "creditsPosition": "bottom-left"
 });
 
 provincesLoader();
@@ -379,7 +386,18 @@ function infoBox(areaCode) {
 
                         switch(key) {
                             case 'name': 
+
+                                var region = phProvinces.filter(function (province) {
+                                    return province[0] === areaCode;
+                                })[0];
+
+                                if (region[2] === right[0])
+                                    region = region[3];
+                                else
+                                    region = region[2];
+
                                 $(".yo div").html("<p>" + right[0] + "</p>");
+                                $(".yo div").append("<p style='font-size:18px; padding-left:5%;'>" + region + "</p>");
                                 $('.yo div p').fadeOut(10).fadeIn(500);
                                 $(".yo table").fadeOut(10).fadeIn(500);
                                 break;
