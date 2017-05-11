@@ -251,7 +251,7 @@ var map = AmCharts.makeChart("ph-map", {
 
         var area = e.mapObject;
         // console.log(area.id);
-
+        $(".yo table").css('animation', 'none');
         new infoBox(area.id);
     }
   }],
