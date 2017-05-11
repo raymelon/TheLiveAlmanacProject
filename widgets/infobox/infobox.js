@@ -169,7 +169,8 @@ function getProvinces(json) {
             return data.search("mono") === -1 && data !== '';
         });
     }
-    // console.log(provinces);
+    provinces.push(["PH-00", "Metro_Manila", "NCR", "00"]);
+    console.log(provinces);
     phProvinces = provinces;
 
     var randomColorMap = [];
@@ -218,7 +219,12 @@ var map = AmCharts.makeChart("ph-map", {
   "dataProvider": {
     "map": "philippinesHigh",
     // "getAreasFromMap": true,
-    "areas": [{}]
+    "areas": [{ 
+        // "id": "PH-00",
+        // "value": 00,
+        // "color": "#e65100",
+        // "groupID": "PH-00"
+    }]
   },
   "areasSettings": {
     "autoZoom": true,
