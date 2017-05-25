@@ -139,6 +139,7 @@ function getRandomColor() {
 var map = AmCharts.makeChart("ph-map", {
   "type": "map",
   "theme": "light",
+  // "centerMap": false,
   "dataProvider": {
     "map": "philippinesHigh",
     // "getAreasFromMap": true,
@@ -167,6 +168,9 @@ var map = AmCharts.makeChart("ph-map", {
         var area = e.mapObject;
         // console.log(area.id);
         $(".yo table").css('animation', 'none');
+        $(".yo").css('display', 'flex');
+        // $("#ph-map").css('width', '50%');
+        // $(".yo").css('width', '50%');
         new infoBox(area.id);
     }
   }],
@@ -203,18 +207,18 @@ var map = AmCharts.makeChart("ph-map", {
   "fontFamily": "Roboto",
   "fontSize": 30,
 
-  "smallMap": {
-    "enabled": true,
-    "backgroundAlpha": 0.5,
-    "mapColor": "#e65100",
-    "top": 30,
-    "left": 42,
-    "right": NaN,
-    "rectangleColor": "#33691e"
-  },
-  // "valueLegend": {
-  //   "enabled": true
+  // "smallMap": {
+  //   "enabled": true,
+  //   "backgroundAlpha": 0.5,
+  //   "mapColor": "#e65100",
+  //   "top": 30,
+  //   "left": 42,
+  //   "right": NaN,
+  //   "rectangleColor": "#33691e"
   // },
+/*  "valueLegend": {
+    "enabled": true
+  },*/
   "legend": {
     "data": [],
     "color": "#494949",
@@ -227,7 +231,8 @@ var map = AmCharts.makeChart("ph-map", {
     "top": 0,
     "useMarkerColorForLabels": true,
     "backgroundAlpha": .4,
-    "backgroundColor": "#efebe9"
+    "backgroundColor": "#efebe9",
+    "showEntries": false
   },
   "creditsPosition": "bottom-left"
 });
@@ -389,7 +394,6 @@ function infoBox(areaCode) {
             provinceName = provinceName.split('_').join(' ');
             provinceName = provinceName.split('(')[0];
             provinceName = provinceName.slice(0, provinceName.length - 1);
-
 
             var results = chunks.filter(function(row) {
                 return row.includes(', ' + provinceName);

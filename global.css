@@ -38,7 +38,8 @@ body {
 }
 
 #map-wrapper {
-	width: 50%;
+	/*width: 50%;*/
+	width: 100%;
 }
 
 ::-webkit-scrollbar { 
@@ -60,7 +61,7 @@ body {
 	-o-transition: all 1s ease;
 
 	height: 100%;
-	width: 45%;
+	width: 100%;
 
 	position: absolute;
 }
@@ -72,9 +73,10 @@ body {
 
 .yo {
 
-	display: -ms-flexbox;
+	/*display: -ms-flexbox;
 	display: -webkit-flex;
-	display: flex;
+	display: flex;*/
+	display: none;
 	/*justify-content: center;*/
 
 	flex-direction: column;
