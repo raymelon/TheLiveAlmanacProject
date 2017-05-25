@@ -168,7 +168,10 @@ var map = AmCharts.makeChart("ph-map", {
         var area = e.mapObject;
         // console.log(area.id);
         $(".yo table").css('animation', 'none');
-        $(".yo").css('display', 'flex');
+        // $(".yo").css('display', 'flex');
+        $(".yo").css('width', '65%');
+        $(".yo").css('z-index', '1');
+        $("#ph-map").css('margin-left', '-20%');
         // $("#ph-map").css('width', '50%');
         // $(".yo").css('width', '50%');
         new infoBox(area.id);
@@ -180,7 +183,7 @@ var map = AmCharts.makeChart("ph-map", {
 
   "zoomControl": {
     "top": "35%",
-    "left": "5%",
+    "left": "65%",
     "buttonSize": 60,
     "buttonBorderThickness": .8,
     "buttonFillColor": "#efebe9",
