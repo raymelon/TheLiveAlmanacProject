@@ -37,13 +37,30 @@ body {
 	background: #E8F0FE;
 }
 
+::-webkit-scrollbar { 
+    display: none; 
+}
+
 #map-wrapper {
 	/*width: 50%;*/
 	width: 100%;
 }
 
-::-webkit-scrollbar { 
-    display: none; 
+#collapse {
+	background: #33691E;
+	color: #efebe9;
+	box-shadow: 2.5px 0 15px -5px #888888;
+	padding: 1% .4% 1% .4%;
+	font-size: 2em;
+	z-index: 2;
+	margin-top: 3%;
+	margin-left: -5px;
+	height: 40px;
+	border-radius: 5px;
+}
+
+#collapse:hover {
+	cursor: pointer;
 }
 
 #ph-map {

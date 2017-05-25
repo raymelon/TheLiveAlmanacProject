@@ -7,6 +7,21 @@ $(".yo table").ready(function () {
     $(".yo table").fadeOut(1000).fadeIn(100);
 });
 
+function collapseClick() {
+    if ($("#collapse").text() === '▶') {
+        $(".yo table").css('animation', 'none');
+        $(".yo").css('width', '100%');
+        $(".yo").css('z-index', '1');
+        $("#ph-map").css('margin-left', '-30%');
+        $("#collapse").text('◀');
+    } else {
+        $(".yo").css('width', '0');
+        $(".yo").css('z-index', '0');
+        $("#ph-map").css('margin-left', '0');
+        $("#collapse").text('▶');
+    }
+}
+
 function loadPopulationSheet(callback) {
     var tabletop1 = Tabletop.init({
         key: "10g7afHi53TaGfrujRldIzRO_Yv8fkqs0XS6Cz1fzx0U",
@@ -169,9 +184,9 @@ var map = AmCharts.makeChart("ph-map", {
         // console.log(area.id);
         $(".yo table").css('animation', 'none');
         // $(".yo").css('display', 'flex');
-        $(".yo").css('width', '65%');
+        $(".yo").css('width', '100%');
         $(".yo").css('z-index', '1');
-        $("#ph-map").css('margin-left', '-20%');
+        $("#ph-map").css('margin-left', '-30%');
         // $("#ph-map").css('width', '50%');
         // $(".yo").css('width', '50%');
         new infoBox(area.id);
